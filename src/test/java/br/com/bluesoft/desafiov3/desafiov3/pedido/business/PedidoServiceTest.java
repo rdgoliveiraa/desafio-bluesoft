@@ -37,7 +37,7 @@ class PedidoServiceTest {
 
     @Test
     void agruparPedidoPorFormaDePagamento() throws Exception {
-
+        doReturn(pedidos).when(pedidoRepository).listarTodos();
         Map<FormaPagamento, Long> qtdPedidos = pedidoService.listarQuantidadeDePedidosPorFormaDePagamento();
         Assertions.assertNotNull(qtdPedidos);
 
