@@ -17,6 +17,7 @@ import br.com.bluesoft.desafiov3.desafiov3.pedido.model.exception.EstoqueVazioEx
 import br.com.bluesoft.desafiov3.desafiov3.pedido.repository.PedidoRepository;
 import br.com.bluesoft.desafiov3.desafiov3.pedido.web.form.ItemPedidoFormulario;
 import br.com.bluesoft.desafiov3.desafiov3.pedido.web.form.PedidoFormulario;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import static java.util.stream.Collectors.*;
@@ -36,7 +37,7 @@ public class PedidoService {
         this.movimentoEstoqueService = movimentoEstoqueService;
     }
 
-    @Transactional(rollbackFor = EstoqueVazioException.class)
+    @Transactional(rollbackFor = EstoqueVazioException.class, propagation = Propagation.REQUIRES_NEW)
     public Pedido novoPedido(PedidoFormulario pedidoFormulario) throws QuantidadeDeItensInsuportavelParaPedidoException, EstoqueVazioException {
         if(pedidoFormulario.getItens().size() > QUANTIDADE_MAXIMA_DE_ITENS_PEDIDO) {
             throw new QuantidadeDeItensInsuportavelParaPedidoException();

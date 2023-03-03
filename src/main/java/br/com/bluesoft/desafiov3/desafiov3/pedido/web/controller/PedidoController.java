@@ -23,8 +23,11 @@ import br.com.bluesoft.desafiov3.desafiov3.pedido.web.view.PedidoView;
 @RequestMapping("/pedidos")
 public class PedidoController {
 
-    @Autowired
     private PedidoService pedidoService;
+
+    public PedidoController(PedidoService pedidoService) {
+        this.pedidoService = pedidoService;
+    }
 
     @PostMapping("/novo-pedido")
     public PedidoView novoPedido(@RequestBody PedidoFormulario pedidoFormulario) throws EstoqueVazioException, QuantidadeDeItensInsuportavelParaPedidoException {

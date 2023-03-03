@@ -20,10 +20,6 @@ public class PedidoRepository {
     @Transactional
     public Pedido salvarPedido(Pedido pedido) {
         entityManager.persist(pedido);
-       for(ItemPedido itemPedido : pedido.getItens()) {
-            itemPedido.setPedido(pedido);
-            entityManager.persist(itemPedido);
-        }
         return pedido;
     }
 

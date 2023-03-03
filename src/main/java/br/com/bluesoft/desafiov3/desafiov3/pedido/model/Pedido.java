@@ -20,7 +20,7 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private FormaPagamento formaPagamento;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemPedido> itens = new ArrayList<>();
 
     public Long getId() {
